@@ -2,6 +2,7 @@ package com.ywq.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ywq.annotations.MethodCount;
 import com.ywq.common.ResponseTemplate;
 import com.ywq.dto.DishDto;
 import com.ywq.entity.Category;
@@ -30,7 +31,7 @@ public class DishController {
     /**
      * 新增菜品
      *
-     * @param Dish
+     * @param dish
      * @return String
      */
     @PostMapping
@@ -92,6 +93,7 @@ public class DishController {
         return ResponseTemplate.success(dishDto);
     }
 
+    @MethodCount
     @GetMapping("/list")
     public ResponseTemplate<List<Dish>> listDish() {
         log.info("get dish list");

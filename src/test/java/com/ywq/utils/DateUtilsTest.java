@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class DateUtilsTest {
 
@@ -31,5 +32,13 @@ public class DateUtilsTest {
         String expectedTime = dateTime.toLocalTime().format(formatter);
 
         assertEquals(expectedTime, localTime);
+    }
+
+    @Test
+    public void testLocalTime() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("M月d日", Locale.CHINA);
+        LocalDate now = LocalDate.now();
+        String format = now.format(dateTimeFormatter);
+        System.out.println(format);
     }
 }
