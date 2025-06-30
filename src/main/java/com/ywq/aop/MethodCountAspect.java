@@ -3,6 +3,7 @@ package com.ywq.aop;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MethodCountAspect {
     private final Map<String, AtomicInteger> methodCountMap = new ConcurrentHashMap<>();
 
-    @Around("@annotation(com.ywq.annotations.MethodCount)")
+    @Pointcut("@annotation(com.ywq.annotations.MethodCount)")
+    public void pointcut() {
+    }
+
+    @Around("pointcut()")
     public Object countMethodCalls(ProceedingJoinPoint joinPoint) {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         String name = method.getName();
